@@ -30,6 +30,8 @@
       <body name="hip_pitch_r" quat="0.707107 0 0.707107 0">
         <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
         <joint name="hip_pitch_r" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuator_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuator_r" pos="0 0 0" axis="0 0 1" range="-2.4435 0.43633"/>
         <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_pitch_r"/>
         <body name="hip_roll_r" quat="0.707107 -0.707107 0 0">
           <inertial pos="0.12175 -0.00193 -0.01343" quat="0.475236 0.517443 0.542039 0.461083" mass="0.76925" diaginertia="0.00303236 0.00284069 0.000427703"/>
