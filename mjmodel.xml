@@ -30,8 +30,8 @@
       <body name="hip_pitch_r" quat="0.707107 0 0.707107 0">
         <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
         <joint name="hip_pitch_r" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
-        <joint name="hip_actuator_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
-        <joint name="hip_actuator_r" pos="0 0 0" axis="0 0 1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuatorR_r" pos="0 0 0" axis="0 0 1" range="-2.4435 0.43633"/>
         <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_pitch_r"/>
         <body name="hip_roll_r" quat="0.707107 -0.707107 0 0">
           <inertial pos="0.12175 -0.00193 -0.01343" quat="0.475236 0.517443 0.542039 0.461083" mass="0.76925" diaginertia="0.00303236 0.00284069 0.000427703"/>
@@ -57,6 +57,8 @@
       <body name="hip_pitch_l" quat="0.707107 0 0.707107 0">
         <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
         <joint name="hip_pitch_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+        <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 1" range="-2.4435 0.43633"/>
         <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_pitch_l"/>
         <body name="hip_roll_l" quat="0.707107 -0.707107 0 0">
           <inertial pos="0.12174 0.0018 -0.01344" quat="0.458106 0.54719 0.511961 0.47814" mass="0.76925" diaginertia="0.00303267 0.00284036 0.00042805"/>
@@ -106,7 +108,7 @@
       </body>
     </body>
   </worldbody>
-  
+
   <!-- Define the default class for leg actuators -->
   <default>
     <position ctrlrange="-3.1415 3.1415" ctrllimited="true" forcerange="-8 8" forcelimited="true" gear="1"/>
@@ -116,15 +118,15 @@
   <actuator>
     <!-- Right leg actuators -->
     <position joint="hip_yaw_r"/>
-    <position joint="hip_pitch_r"/>
-    <position joint="hip_roll_r"/>
+    <position joint="hip_actuatorR_r"/>
+    <position joint="hip_actuatorR_l"/>
     <position joint="knee_pitch_r"/>
     <position joint="ankle_pitch_r"/>
 
     <!-- Left leg actuators -->
-    <position joint="hip_yaw_l"/>
-    <position joint="hip_pitch_l"/>
-    <position joint="hip_roll_l"/>
+    <position joint="hip_yaw_l"/> 
+    <position joint="hip_actuatorL_r"/>
+    <position joint="hip_actuatorL_l"/>
     <position joint="knee_pitch_l"/>
     <position joint="ankle_pitch_l"/>
   </actuator>
@@ -146,5 +148,14 @@
     <position joint="shoulder_roll_l"/>
     <position joint="elbow_pitch_l"/>
   </actuator>
+
+  <!-- Define equality constraints for the differential mechanism -->
+  <equality>
+      <joint joint1="hip_roll_r" joint2="hip_actuatorR_r" polycoef="0 1.0 0.0"/>
+      <joint joint1="hip_roll_r" joint2="hip_actuatorR_l" polycoef="0 -1.0 0.0"/>
+
+      <joint joint1="hip_roll_l" joint2="hip_actuatorL_r" polycoef="0 1.0 0.0"/>
+      <joint joint1="hip_roll_l" joint2="hip_actuatorL_l" polycoef="0 -1.0 0.0"/>
+  </equality>
 
 </mujoco>
