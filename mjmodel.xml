@@ -116,20 +116,21 @@
 
   <!-- Actuators for lower body joints using the leg actuator parameters -->
   <actuator>
-    <!-- Right leg actuators -->
-    <position joint="hip_yaw_r"/>
-    <position joint="hip_actuatorR_r"/>
-    <position joint="hip_actuatorR_l"/>
-    <position joint="knee_pitch_r"/>
-    <position joint="ankle_pitch_r"/>
+    <!-- Right leg actuators with control ranges -->
+    <position joint="hip_yaw_r" ctrlrange="-3.14 3.14"/>
+    <position joint="hip_actuatorR_r" ctrlrange="-3.14 3.14"/>
+    <position joint="hip_actuatorR_l" ctrlrange="-3.14 3.14"/>
+    <position joint="knee_pitch_r" ctrlrange="-3.14 3.14"/>
+    <position joint="ankle_pitch_r" ctrlrange="-3.14 3.14"/>
 
-    <!-- Left leg actuators -->
-    <position joint="hip_yaw_l"/> 
-    <position joint="hip_actuatorL_r"/>
-    <position joint="hip_actuatorL_l"/>
-    <position joint="knee_pitch_l"/>
-    <position joint="ankle_pitch_l"/>
-  </actuator>
+    <!-- Left leg actuators with control ranges -->
+    <position joint="hip_yaw_l" ctrlrange="-3.14 3.14"/>
+    <position joint="hip_actuatorL_r" ctrlrange="-3.14 3.14"/>
+    <position joint="hip_actuatorL_l" ctrlrange="-3.14 3.14"/>
+    <position joint="knee_pitch_l" ctrlrange="-3.14 3.14"/>
+    <position joint="ankle_pitch_l" ctrlrange="-3.14 3.14"/>
+</actuator>
+
 
   <!-- Define the default class for arm actuators -->
   <default>
