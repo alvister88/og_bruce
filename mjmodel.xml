@@ -51,7 +51,7 @@
         <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_yaw_r"/>
         <body name="hip_pitch_r" quat="0.707107 0 0.707107 0">
           <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
-          <joint name="hip_pitch_r" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+          <joint name="hip_pitch_r" pos="0 0 0" axis="0 0 1" range="-0.43633 2.4435"/>
           <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1" />
           <joint name="hip_actuatorR_r" pos="0 0 0" axis="0 0 -1" />
           <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_pitch_r"/>
@@ -82,7 +82,7 @@
         <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_yaw_l"/>
         <body name="hip_pitch_l" quat="0.707107 0 0.707107 0">
           <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
-          <joint name="hip_pitch_l" pos="0 0 0" axis="0 0 -1" range="-2.4435 0.43633"/>
+          <joint name="hip_pitch_l" pos="0 0 0" axis="0 0 1" range="-0.43633 2.4435"/>
           <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 1" />
           <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 -1" />
           <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="hip_pitch_l"/>
@@ -175,8 +175,8 @@
 
   <!-- Define equality constraints for the differential mechanism -->
   <equality>
-      <!-- <joint joint1="hip_roll_r" joint2="hip_actuatorR_r" polycoef="0 -1.0 0.0"/>
-      <joint joint1="hip_roll_r" joint2="hip_actuatorR_l" polycoef="0 -1.0 0.0"/>
+      <joint joint1="hip_roll_r" joint2="hip_actuatorR_r" polycoef="0 -1.0 0.0"/>
+      <!-- <joint joint1="hip_roll_r" joint2="hip_actuatorR_l" polycoef="0 -1.0 0.0"/>
 
       <joint joint1="hip_roll_l" joint2="hip_actuatorL_r" polycoef="0 -1.0 0.0"/>
       <joint joint1="hip_roll_l" joint2="hip_actuatorL_l" polycoef="0 -1.0 0.0"/> -->
