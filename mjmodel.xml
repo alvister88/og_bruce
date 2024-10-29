@@ -75,9 +75,9 @@
         </body>
 
         <body name="hip_actuatorR_l" quat="0.707107 0 0.707107 0">
-            <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
-            <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1" />
-          </body>
+          <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
+          <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1" />
+        </body>  
 
         <body name="hip_actuatorR_r" quat="0.707107 0 0.707107 0">
           <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
@@ -115,14 +115,14 @@
           </body>
         </body>
 
-        <body name="hip_actuatorR_l" quat="0.707107 0 0.707107 0">
+        <body name="hip_actuatorL_l" quat="0.707107 0 0.707107 0">
             <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
-            <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1" />
+            <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 1" />
           </body>
 
-        <body name="hip_actuatorR_r" quat="0.707107 0 0.707107 0">
+        <body name="hip_actuatorL_r" quat="0.707107 0 0.707107 0">
           <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
-          <joint name="hip_actuatorR_r" pos="0 0 0" axis="0 0 -1" />
+          <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 -1" />
         </body>
 
       </body>
@@ -198,11 +198,11 @@
 
   <!-- Define equality constraints for the differential mechanism -->
   <equality>
-    <joint joint1="hip_actuatorR_r" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.002 1" solimp="0.9 0.95 0.001 0.5 2" />
-    <joint joint1="hip_actuatorR_l" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.002 1" solimp="0.9 0.95 0.001 0.5 2" />
+    <joint joint1="hip_actuatorR_r" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
+    <joint joint1="hip_actuatorR_l" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
 
-    <joint joint1="hip_actuatorL_r" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.002 1" solimp="0.9 0.95 0.001 0.5 2" />
-    <joint joint1="hip_actuatorL_l" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.002 1" solimp="0.9 0.95 0.001 0.5 2" />
+    <joint joint1="hip_actuatorL_r" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
+    <joint joint1="hip_actuatorL_l" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
   </equality>
 
 </mujoco>
