@@ -77,12 +77,12 @@
         </body>
 
         <body name="hip_actuatorR_l" quat="0.707107 0 0.707107 0">
-          <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
+          <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
           <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1" />
         </body>  
 
         <body name="hip_actuatorR_r" quat="0.707107 0 0.707107 0">
-          <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
+          <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
           <joint name="hip_actuatorR_r" pos="0 0 0" axis="0 0 -1" />
         </body>
 
@@ -118,12 +118,12 @@
         </body>
 
         <body name="hip_actuatorL_l" quat="0.707107 0 0.707107 0">
-            <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
+            <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
             <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 1" />
           </body>
 
         <body name="hip_actuatorL_r" quat="0.707107 0 0.707107 0">
-          <inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001"/>
+          <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
           <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 -1" />
         </body>
 
