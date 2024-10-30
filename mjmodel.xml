@@ -1,7 +1,9 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
   <compiler angle="radian" autolimits="true" />
 
-  <option impratio="3.5" iterations="3" ls_iterations="3" integrator="RK4" timestep="0.005" />
+  <option impratio="3.5" iterations="3" ls_iterations="3" integrator="RK4" timestep="0.005">
+    <flag gravity="disable"/>
+  </option >
 
   <default>
       <default class="og_bruce">
@@ -196,13 +198,27 @@
     <position joint="elbow_pitch_l"/>
   </actuator>
 
-  <!-- Define equality constraints for the differential mechanism -->
-  <equality>
-    <joint joint1="hip_actuatorR_r" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
-    <joint joint1="hip_actuatorR_l" joint2="hip_roll_r" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
 
-    <joint joint1="hip_actuatorL_r" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
-    <joint joint1="hip_actuatorL_l" joint2="hip_roll_l" polycoef="0 -1.0 0.0" solref="0.005 1" solimp="0.9 0.95 0.001 0.5 2" />
+  <tendon>
+    <fixed name="roll_r">
+            <joint joint="hip_roll_r" coef="1"/>
+    </fixed>
+        <fixed name="pitch_r">
+            <joint joint="hip_pitch_r" coef="1"/>
+    </fixed>
+        <fixed name="sum_r">
+            <joint joint="hip_actuatorR_r" coef="0.5"/>
+          <joint joint="hip_actuatorR_l" coef="0.5"/>
+    </fixed>
+        <fixed name="diff_r">
+            <joint joint="hip_actuatorR_r" coef=".5"/>
+          <joint joint="hip_actuatorR_l" coef="-.5"/>
+        </fixed>
+  </tendon>
+
+  <equality>
+    <tendon tendon1="roll_r"  tendon2="sum_r" polycoef="0 1 0 0 0"/>
+    <tendon tendon1="pitch_r"  tendon2="diff_r" polycoef="0 1 0 0 0"/>
   </equality>
 
 </mujoco>
