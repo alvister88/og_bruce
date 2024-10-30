@@ -2,8 +2,9 @@
     <compiler angle="radian" autolimits="true"/>
 
     <option impratio="3.5" iterations="3" ls_iterations="3" integrator="RK4" timestep="0.005">
-        <flag gravity="disable"/>
+            <flag gravity="enable"/>
     </option>
+    <!-- <flag gravity="disable"/> -->
 
     <default>
         <default class="og_bruce">
@@ -52,7 +53,10 @@
     </asset>
 
     <worldbody>
+        <!-- base link z at 0.5m to start in scene -->
         <body name="base_link" pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" childclass="og_bruce">
+            <!-- So the model isn't rigid in the air -->
+            <freejoint /> 
             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="base_link"/>
             <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/>
 
@@ -317,4 +321,16 @@
         <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_r1" body2="ankle_pitch_r" name="equality_knee_r"/>
         <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_l1" body2="ankle_pitch_l" name="equality_knee_l"/>
     </equality>
-</mujoco>
+
+    <keyframe>
+        <key name="home"
+            qpos='0 0 0.5 
+                  1 0 0 0
+                  0 0 0 0 0 0 0 0 0 0 
+                  0 0 0 0 0 0 0 0 0 0 
+                  0 1.4 0 0 -1.4 0'
+            ctrl='0 0 0 0 0 0 0 0 0 0 
+                  0 1.4 0 0 -1.4 0'/>
+    </keyframe>
+
+ </mujoco>
