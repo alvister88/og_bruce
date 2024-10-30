@@ -200,6 +200,7 @@
 
 
   <tendon>
+    <!-- Parallel mechanism for right leg -->
     <fixed name="roll_r">
             <joint joint="hip_roll_r" coef="1"/>
     </fixed>
@@ -207,18 +208,37 @@
             <joint joint="hip_pitch_r" coef="1"/>
     </fixed>
         <fixed name="sum_r">
-            <joint joint="hip_actuatorR_r" coef="0.5"/>
+          <joint joint="hip_actuatorR_r" coef="0.5"/>
           <joint joint="hip_actuatorR_l" coef="0.5"/>
     </fixed>
         <fixed name="diff_r">
-            <joint joint="hip_actuatorR_r" coef=".5"/>
+          <joint joint="hip_actuatorR_r" coef=".5"/>
           <joint joint="hip_actuatorR_l" coef="-.5"/>
+        </fixed>
+    
+    <!-- Parallel mechanism for left leg -->
+    <fixed name="roll_l">
+            <joint joint="hip_roll_l" coef="1"/>
+    </fixed>
+        <fixed name="pitch_l">
+            <joint joint="hip_pitch_l" coef="1"/>
+    </fixed>
+        <fixed name="sum_l">
+          <joint joint="hip_actuatorL_r" coef="0.5"/>
+          <joint joint="hip_actuatorL_l" coef="0.5"/>
+    </fixed>
+        <fixed name="diff_l">
+          <joint joint="hip_actuatorL_r" coef=".5"/>
+          <joint joint="hip_actuatorL_l" coef="-.5"/>
         </fixed>
   </tendon>
 
   <equality>
-    <tendon tendon1="roll_r"  tendon2="sum_r" polycoef="0 1 0 0 0"/>
-    <tendon tendon1="pitch_r"  tendon2="diff_r" polycoef="0 1 0 0 0"/>
+    <tendon tendon1="roll_r"  tendon2="sum_r" polycoef="0 -1 0 0 0"/>
+    <tendon tendon1="pitch_r"  tendon2="diff_r" polycoef="0 -1 0 0 0"/>
+
+    <tendon tendon1="roll_l"  tendon2="sum_l" polycoef="0 -1 0 0 0"/>
+    <tendon tendon1="pitch_l"  tendon2="diff_l" polycoef="0 -1 0 0 0"/>
   </equality>
 
 </mujoco>
