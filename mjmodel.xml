@@ -9,15 +9,22 @@
         <default class="og_bruce">
             <geom contype="0" conaffinity="0" type="mesh" group="2"/>
             <joint damping="1.0" armature="0.011"/>
-            <position/>
-            <!-- <default class="og_bruce/collision">
-                <geom group="3" contype="0" conaffinity="1"/>
+            <position ctrlrange="-3.14 3.14" kp="1000" kv="5" />
+
+            <default class="og_bruce/collision">
+                <!-- Group right now is arbitrary -->
+                <geom group="1" contype="0" conaffinity="1"/>
                 <default class="og_bruce/collision/foot">
                     <geom solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
                 </default>
-            </default> -->
-            <default class="affine">
-                <position ctrlrange="-3.14 3.14" forcerange="-8.0 8.0" kp="1000" kv="5"/>
+            </default>
+
+            <default class="og_bruce/affine_bear">
+              <position forcerange="-8.0 8.0"/>
+            </default>
+
+            <default class="og_bruce/affine_dynamixel">
+              <position forcerange="-1 1" />
             </default>
         </default>
     </default>
@@ -76,6 +83,14 @@
                                 <joint name="ankle_pitch_r" pos="0 0 0" axis="0 0 -1" range="-1.2566 1.0472"/>
                                 <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="ankle_pitch_r"/>
                                 <site name="ankle_attachment_r" pos="0 -0.03 0"/>
+                                
+                                <!-- Contact geometry for right foot -->
+                                <body>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_r" type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
+                                </body>
+                                <site name="footR_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 1"/>
+                                <site name="footR_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 1"/>
+
                             </body>
                         </body>
                         <body name="knee_pitch_r0" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
@@ -136,6 +151,14 @@
                                 <joint name="ankle_pitch_l" pos="0 0 0" axis="0 0 -1" range="-1.2566 1.0472"/>
                                 <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="ankle_pitch_l"/>
                                 <site name="ankle_attachment_l" pos="0 -0.03 0"/>
+
+                                <!-- Contact geometry for left foot -->
+                                <body>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_l" type="box" size="0.0125 0.05 0.007" pos="0.0115 0.008 0"/>
+                                </body>
+                                <site name="footL_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 1"/>
+                                <site name="footL_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 1"/>
+
                             </body>
                         </body>
                         <body name="knee_pitch_l0" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
@@ -167,6 +190,8 @@
                 </body>
 
             </body>
+
+            <!-- Upper Body -->
             <body name="shoulder_pitch_r" pos="0.029801 -0.13225 0.151062" quat="0.5 0.5 -0.5 0.5">
                 <inertial pos="0 -0.0004 -0.01353" quat="0.999973 -0.00739362 -1.23246e-06 4.94233e-06" mass="0.08908"
                           diaginertia="1.6397e-05 1.54135e-05 8.45928e-06"/>
@@ -209,36 +234,36 @@
     <!-- Actuators for lower body joints using the leg actuator parameters -->
     <actuator>
         <!-- Right leg actuators with control ranges -->
-        <position class="affine" joint="hip_yaw_r" name="hip_yaw_r"/>
-        <!-- <position class="affine" joint="hip_pitch_r" name="hip_pitch_r" /> -->
-        <!-- <position class="affine" joint="hip_roll_r" name="hip_roll_r" /> -->
-        <position class="affine" joint="hip_actuatorR_r" name="hip_actuatorR_r"/>
-        <position class="affine" joint="hip_actuatorR_l" name="hip_actuatorR_l"/>
-        <position class="affine" joint="knee_pitch_r" name="knee_pitch_r"/>
-        <position class="affine" joint="knee_pitch_r0" name="ankle_pitch_r"/>
+        <position class="og_bruce/affine_bear" joint="hip_yaw_r" name="hip_yaw_r"/>
+        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_r" name="hip_pitch_r" /> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_r" name="hip_roll_r" /> -->
+        <position class="og_bruce/affine_bear" joint="hip_actuatorR_r" name="hip_actuatorR_r"/>
+        <position class="og_bruce/affine_bear" joint="hip_actuatorR_l" name="hip_actuatorR_l"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_r" name="knee_pitch_r"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_r0" name="ankle_pitch_r"/>
 
         <!-- Left leg actuators with control ranges -->
-        <position class="affine" joint="hip_yaw_l" name="hip_yaw_l"/>
-        <!-- <position class="affine" joint="hip_pitch_l" name="hip_pitch_l" /> -->
-        <!-- <position class="affine" joint="hip_roll_l" name="hip_roll_l" /> -->
-        <position class="affine" joint="hip_actuatorL_r" name="hip_actuatorL_r"/>
-        <position class="affine" joint="hip_actuatorL_l" name="hip_actuatorL_l"/>
-        <position class="affine" joint="knee_pitch_l" name="knee_pitch_l"/>
-        <position class="affine" joint="knee_pitch_l0" name="ankle_pitch_l"/>
+        <position class="og_bruce/affine_bear" joint="hip_yaw_l" name="hip_yaw_l"/>
+        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_l" name="hip_pitch_l" /> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_l" name="hip_roll_l" /> -->
+        <position class="og_bruce/affine_bear" joint="hip_actuatorL_r" name="hip_actuatorL_r"/>
+        <position class="og_bruce/affine_bear" joint="hip_actuatorL_l" name="hip_actuatorL_l"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_l" name="knee_pitch_l"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_l0" name="ankle_pitch_l"/>
     </actuator>
 
 
     <!-- Actuators for upper body joints using the arm actuator parameters -->
     <actuator>
         <!-- Right arm actuators -->
-        <position joint="shoulder_pitch_r"/>
-        <position joint="shoulder_roll_r"/>
-        <position joint="elbow_pitch_r"/>
+        <position class="og_bruce/affine_dynamixel" joint="shoulder_pitch_r" name="shoulder_pitch_r"/>
+        <position class="og_bruce/affine_dynamixel" joint="shoulder_roll_r" name="shoulder_roll_r"/>
+        <position class="og_bruce/affine_dynamixel" joint="elbow_pitch_r" name="elbow_pitch_r"/>
 
         <!-- Left arm actuators -->
-        <position joint="shoulder_pitch_l"/>
-        <position joint="shoulder_roll_l"/>
-        <position joint="elbow_pitch_l"/>
+        <position class="og_bruce/affine_dynamixel" joint="shoulder_pitch_l" name="shoulder_pitch_l"/>
+        <position class="og_bruce/affine_dynamixel" joint="shoulder_roll_l" name="shoulder_roll_l"/>
+        <position class="og_bruce/affine_dynamixel" joint="elbow_pitch_l" name="elbow_pitch_l"/>
     </actuator>
 
 
