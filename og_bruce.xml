@@ -21,11 +21,11 @@
             </default>
 
             <default class="og_bruce/affine_bear">
-              <position forcerange="-8.0 8.0"/>
+              <position forcerange="-6.0 6.0"/>
             </default>
 
             <default class="og_bruce/affine_dynamixel">
-              <position forcerange="-1 1" />
+              <position forcerange="-0.5 0.5" />
             </default>
         </default>
     </default>
@@ -324,13 +324,25 @@
 
     <keyframe>
         <key name="home"
-            qpos='0 0 0.5 
-                  1 0 0 0
-                  0 0 0 0 0 0 0 0 0 0 
-                  0 0 0 0 0 0 0 0 0 0 
-                  0 1.4 0 0 -1.4 0'
-            ctrl='0 0 0 0 0 0 0 0 0 0 
+            qpos='  0 0 0.45
+                    1 0 0 0
+                    0 0 0 0 0 0 0 0 0 0 
+                    0 0 0 0 0 0 0 0 0 0 
+                    0 1.4 0 0 -1.4 0'
+            
+            ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
                   0 1.4 0 0 -1.4 0'/>
     </keyframe>
+     <!-- qpos='0 0 0 0 0 0 0 0 0 0 
+           0 0 0 0 0 0 0 0 0 0 
+           0 1.4 0 0 -1.4 0' -->
+
+    <!-- qpos='0 0 0.43
+          1 0 0 0
+          0 0 0 0 0 0 0 0 0 0 
+          0 0 0 0 0 0 0 0 0 0 
+          0 1.4 0 0 -1.4 0' -->
 
  </mujoco>
+
+ 
