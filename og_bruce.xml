@@ -1,7 +1,7 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="3.5" iterations="3" ls_iterations="3" integrator="RK4" timestep="0.005">
+    <option impratio="5" iterations="3" ls_iterations="1" integrator="implicitfast" timestep="0.0025">
             <flag gravity="enable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
@@ -333,16 +333,6 @@
             ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
                   0 1.4 0 0 -1.4 0'/>
     </keyframe>
-     <!-- qpos='0 0 0 0 0 0 0 0 0 0 
-           0 0 0 0 0 0 0 0 0 0 
-           0 1.4 0 0 -1.4 0' -->
-
-    <!-- qpos='0 0 0.43
-          1 0 0 0
-          0 0 0 0 0 0 0 0 0 0 
-          0 0 0 0 0 0 0 0 0 0 
-          0 1.4 0 0 -1.4 0' -->
-
  </mujoco>
 
  
