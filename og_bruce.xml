@@ -57,6 +57,9 @@
         <body name="base_link" pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" childclass="og_bruce">
             <!-- So the model isn't rigid in the air -->
             <freejoint /> 
+            <!-- Camera wrt to COM to track the base link -->
+            <camera name="track_com" pos="1.566 -1.878 0.473" xyaxes="0.768 0.641 0.000 -0.101 0.122 0.987" mode="trackcom"/>
+
             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="base_link"/>
             <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/>
 
