@@ -14,10 +14,16 @@
 
             <default class="og_bruce/collision">
                 <!-- Group right now is arbitrary -->
-                <geom group="1" contype="0" conaffinity="1"/>
-                <default class="og_bruce/collision/foot">
-                    <geom rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
+                <geom group="1" contype="0" conaffinity="1" rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
+                <!-- Foot collision geometry -->
+                <default class="og_bruce/collision/foot" >
+                    <geom type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
                 </default>
+                <!-- Shin collision geometry -->
+                <default class="og_bruce/collision/shin" >
+                    <geom type="box" size="0.08 0.01 0.018" pos="0.075 0.05 0.0"/>
+                </default>
+
             </default>
 
             <default class="og_bruce/affine_bear">
@@ -63,6 +69,7 @@
             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="base_link"/>
             <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/>
 
+            <!-- Right Leg ############################################################################################### -->
             <body name="hip_yaw_r" pos="0.029801 -0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
                 <inertial pos="0.00014312 -0.00028909 0.0072751" quat="0.509356 0.490492 0.508928 0.490884"
                           mass="0.73183" diaginertia="0.0018184 0.0016741 0.000549369"/>
@@ -85,6 +92,11 @@
                             <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_r"/>
 
+                            <!-- Contact geometry for right shin -->
+                            <body>
+                                <geom class="og_bruce/collision/shin" name="shin_contact_r" />
+                            </body>
+
                             <body name="ankle_pitch_r" pos="0.1618 0.0503411 0">
                                 <inertial pos="0.014913 0.0053931 0.00011234"
                                           quat="0.468881 0.503427 -0.499007 0.526977" mass="0.025"
@@ -95,8 +107,9 @@
                                 
                                 <!-- Contact geometry for right foot -->
                                 <body>
-                                    <geom class="og_bruce/collision/foot" name="foot_contact_r" type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
-                                </body>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_r" />
+                                </body>\
+                                <!-- Sites for right foot contact sensors -->
                                 <site name="footR_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 0.5"/>
                                 <site name="footR_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 0.5"/>
 
@@ -130,6 +143,7 @@
                 </body>
             </body>
 
+            <!-- Left Leg ############################################################################################### -->
             <body name="hip_yaw_l" pos="0.029801 0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
                 <inertial pos="0.00014 -0.00029 0.00728" quat="0.509356 0.490492 0.508928 0.490884" mass="0.73183"
                           diaginertia="0.0018184 0.0016741 0.000549369"/>
@@ -153,6 +167,11 @@
                             <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_l"/>
 
+                            <!-- Contact geometry for left shin -->
+                            <body>
+                                <geom class="og_bruce/collision/shin" name="shin_contact_l" />
+                            </body>
+
                             <body name="ankle_pitch_l" pos="0.1618 0.0503411 0">
                                 <inertial pos="0.01509 0.0056392 -0.00011925"
                                           quat="0.500518 0.525947 -0.470146 0.501821" mass="0.025"
@@ -163,8 +182,9 @@
 
                                 <!-- Contact geometry for left foot -->
                                 <body>
-                                    <geom class="og_bruce/collision/foot" name="foot_contact_l" type="box" size="0.0125 0.05 0.007" pos="0.0115 0.008 0"/>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_l" />
                                 </body>
+                                <!-- Sites for left foot contact sensors -->
                                 <site name="footL_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 0.5"/>
                                 <site name="footL_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 0.5"/>
 
