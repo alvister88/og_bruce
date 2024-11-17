@@ -1,7 +1,7 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="5" iterations="3" ls_iterations="1" integrator="implicitfast" timestep="0.0025">
+    <option impratio="5" iterations="3" ls_iterations="5" integrator="implicitfast" timestep="0.005">
             <flag gravity="enable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
@@ -14,14 +14,14 @@
 
             <default class="og_bruce/collision">
                 <!-- Group right now is arbitrary -->
-                <geom group="1" contype="1" conaffinity="1" rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
+                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
                 <!-- Foot collision geometry -->
                 <default class="og_bruce/collision/foot" >
-                    <geom type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
+                    <geom contype="1" conaffinity="1" type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
                 </default>
                 <!-- Shin collision geometry -->
                 <default class="og_bruce/collision/shin" >
-                    <geom type="box" size="0.08 0.01 0.018" pos="0.075 0.05 0.0"/>
+                    <geom contype="2" conaffinity="2" type="box" size="0.08 0.01 0.018" pos="0.075 0.05 0.0"/>
                 </default>
 
             </default>
@@ -89,7 +89,7 @@
                         <body name="knee_pitch_r" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.049407 0.03979 0.00043596" quat="-0.0540474 0.685679 -0.166088 0.706639"
                                       mass="0.092271" diaginertia="0.000345577 0.000339699 4.45904e-05"/>
-                            <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
+                            <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_r"/>
 
                             <!-- Contact geometry for right shin -->
@@ -164,7 +164,7 @@
                         <body name="knee_pitch_l" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.049014 0.039754 -0.00044194" quat="0.165544 0.706684 0.0527763 0.685862"
                                       mass="0.091949" diaginertia="0.000341457 0.000335584 4.45378e-05"/>
-                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
+                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_l"/>
 
                             <!-- Contact geometry for left shin -->
