@@ -89,7 +89,7 @@
                         <body name="knee_pitch_r" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.049407 0.03979 0.00043596" quat="-0.0540474 0.685679 -0.166088 0.706639"
                                       mass="0.092271" diaginertia="0.000345577 0.000339699 4.45904e-05"/>
-                            <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
+                            <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_r"/>
 
                             <!-- Contact geometry for right shin -->
@@ -164,7 +164,7 @@
                         <body name="knee_pitch_l" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.049014 0.039754 -0.00044194" quat="0.165544 0.706684 0.0527763 0.685862"
                                       mass="0.091949" diaginertia="0.000341457 0.000335584 4.45378e-05"/>
-                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="-0.7854 2.4435"/>
+                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
                             <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="knee_pitch_l"/>
 
                             <!-- Contact geometry for left shin -->
