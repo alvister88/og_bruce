@@ -1,111 +1,100 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="5" iterations="1" ls_iterations="5" integrator="implicitfast" timestep="0.005">
-        <flag gravity="enable"/>
+    <option impratio="5" iterations="3" ls_iterations="5" integrator="implicitfast" timestep="0.005">
+            <flag gravity="enable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
 
     <default>
         <default class="og_bruce">
-            <!-- Default geometry definitions -->
-            <!-- <geom contype="0" conaffinity="0" type="box" size="0.02 0.02 0.02" group="2"/> -->
+            <geom contype="0" rgba="0.79216 0.81961 0.93333 0.1" conaffinity="0" group="2"/>
             <joint damping="1.0" armature="0.011"/>
-            <position ctrlrange="-3.14 3.14" kp="1000" kv="5"/>
+            <position ctrlrange="-3.14 3.14" kp="1000" kv="5" />
 
             <default class="og_bruce/collision">
-                <!-- Collision geometry defaults -->
-                <geom group="1" type="box" size="0.05 0.05 0.05" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
+                <!-- Group right now is arbitrary -->
+                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
                 <!-- Foot collision geometry -->
-                <default class="og_bruce/collision/foot">
+                <default class="og_bruce/collision/foot" >
                     <geom contype="1" conaffinity="1" type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
                 </default>
                 <!-- Shin collision geometry -->
-                <default class="og_bruce/collision/shin">
+                <default class="og_bruce/collision/shin" >
                     <geom contype="2" conaffinity="2" type="box" size="0.08 0.01 0.018" pos="0.075 0.05 0.0"/>
                 </default>
+
             </default>
 
             <default class="og_bruce/affine_bear">
-                <position forcerange="-6.0 6.0"/>
+              <position forcerange="-6.0 6.0"/>
             </default>
 
             <default class="og_bruce/affine_dynamixel">
-                <position forcerange="-0.5 0.5"/>
+              <position forcerange="-0.5 0.5" />
             </default>
         </default>
     </default>
 
     <worldbody>
-        <!-- Base Link -->
+        <!-- base link z at 0.5m to start in scene -->
         <body name="base_link" pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" childclass="og_bruce">
-            <freejoint/>
-            <!-- Removed camera for visualization -->
+            <!-- So the model isn't rigid in the air -->
+            <freejoint /> 
+            <!-- Camera wrt to COM to track the base link -->
+            <camera name="track_com" pos="1.253 -1.502 0.378" xyaxes="0.768 0.641 0.000 -0.101 0.122 0.987" mode="trackcom"/>
 
             <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/>
 
-            <!-- Right Leg -->
+            <!-- Right Leg ############################################################################################### -->
             <body name="hip_yaw_r" pos="0.029801 -0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
                 <inertial pos="0.00014312 -0.00028909 0.0072751" quat="0.509356 0.490492 0.508928 0.490884"
                           mass="0.73183" diaginertia="0.0018184 0.0016741 0.000549369"/>
                 <joint name="hip_yaw_r" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"/>
-
                 <body name="hip_pitch_r" quat="0.707107 0 0.707107 0">
-                    <inertial pos="0 0 0" mass="0.01436"
-                              diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
+                    <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
                     <joint name="hip_pitch_r" pos="0 0 0" axis="0 0 1" range="-0.43633 2.4435"/>
 
                     <body name="hip_roll_r" quat="0.707107 -0.707107 0 0">
-                        <inertial pos="0.12175 -0.00193 -0.01343"
-                                  quat="0.475236 0.517443 0.542039 0.461083"
+                        <inertial pos="0.12175 -0.00193 -0.01343" quat="0.475236 0.517443 0.542039 0.461083"
                                   mass="0.76925" diaginertia="0.00303236 0.00284069 0.000427703"/>
                         <joint name="hip_roll_r" pos="0 0 0" axis="0 0 1" range="-0.95993 0.95993"/>
 
-                        <body name="knee_pitch_r" pos="0.174817 0 -0.0075"
-                              quat="0.707107 0.707107 0 0">
-                            <inertial pos="0.049407 0.03979 0.00043596"
-                                      quat="-0.0540474 0.685679 -0.166088 0.706639"
-                                      mass="0.092271"
-                                      diaginertia="0.000345577 0.000339699 4.45904e-05"/>
+                        <body name="knee_pitch_r" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
+                            <inertial pos="0.049407 0.03979 0.00043596" quat="-0.0540474 0.685679 -0.166088 0.706639"
+                                      mass="0.092271" diaginertia="0.000345577 0.000339699 4.45904e-05"/>
                             <joint name="knee_pitch_r" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
 
                             <!-- Contact geometry for right shin -->
                             <body>
-                                <geom class="og_bruce/collision/shin" name="shin_contact_r"/>
+                                <geom class="og_bruce/collision/shin" name="shin_contact_r" />
                             </body>
 
                             <body name="ankle_pitch_r" pos="0.1618 0.0503411 0">
                                 <inertial pos="0.014913 0.0053931 0.00011234"
-                                          quat="0.468881 0.503427 -0.499007 0.526977"
-                                          mass="0.025"
+                                          quat="0.468881 0.503427 -0.499007 0.526977" mass="0.025"
                                           diaginertia="2.1159e-05 2.02708e-05 1.57584e-06"/>
-                                <joint name="ankle_pitch_r" pos="0 0 0" axis="0 0 -1"
-                                       range="-1.2566 1.0472"/>
+                                <joint name="ankle_pitch_r" pos="0 0 0" axis="0 0 -1" range="-1.2566 1.0472"/>
                                 <site name="ankle_attachment_r" pos="0 -0.03 0"/>
-
+                                
                                 <!-- Contact geometry for right foot -->
                                 <body>
-                                    <geom class="og_bruce/collision/foot" name="foot_contact_r"/>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_r" />
                                 </body>
-
                                 <!-- Sites for right foot contact sensors -->
-                                <site name="footR_contact_site_front" pos="0.023 0.05 0" size="0.007"/>
-                                <site name="footR_contact_site_back" pos="0.023 -0.032 0" size="0.007"/>
+                                <site name="footR_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 0.5"/>
+                                <site name="footR_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 0.5"/>
+
                             </body>
                         </body>
-
-                        <body name="knee_pitch_r0" pos="0.174817 0 -0.0075"
-                              quat="0.707107 0.707107 0 0">
+                        <body name="knee_pitch_r0" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.0 0.0 0.0" mass="0.0001"
                                       diaginertia="4.04275e-08 3.80418e-08 7.70463e-08"/>
                             <joint name="knee_pitch_r0" pos="0 0 0" axis="0 0 1"/>
-
-                            <body name="ankle_pitch_r1" pos="0 -0.03 0"
-                                  quat="0.9886517 0 0 0.1502256">
+                            <body name="ankle_pitch_r1" pos="0 -0.03  0" quat="0.9886517   0  0 0.1502256">
                                 <joint name="ankle_pitch_r10" pos="0 0 0" axis="0 0 1"/>
                                 <inertial pos="0.0 0.0 0.0" mass="0.0001"
                                           diaginertia="4.04275e-08 3.80418e-08 7.70463e-08"/>
-
                                 <body name="knee_pitch_r1" pos="0.1695 0 0">
                                     <joint name="knee_pitch_r1" axis="0 0 1"/>
                                     <inertial pos="0.0 0.0 0.0" mass="0.0001"
@@ -117,89 +106,67 @@
                 </body>
 
                 <body name="hip_actuatorR_l" quat="0.707107 0 0.707107 0">
-                    <inertial pos="0 0 0" mass="0.001"
-                              diaginertia="1e-09 1e-09 1e-09"/>
+                    <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
                     <joint name="hip_actuatorR_l" pos="0 0 0" axis="0 0 1"/>
                 </body>
-
                 <body name="hip_actuatorR_r" quat="0.707107 0 0.707107 0">
-                    <inertial pos="0 0 0" mass="0.001"
-                              diaginertia="1e-09 1e-09 1e-09"/>
+                    <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
                     <joint name="hip_actuatorR_r" pos="0 0 0" axis="0 0 -1"/>
                 </body>
             </body>
 
-            <!-- Left Leg -->
-            <body name="hip_yaw_l" pos="0.029801 0.0758555 -0.0384375"
-                  quat="0.707107 0 0 -0.707107">
-                <inertial pos="0.00014 -0.00029 0.00728"
-                          quat="0.509356 0.490492 0.508928 0.490884"
-                          mass="0.73183"
+            <!-- Left Leg ############################################################################################### -->
+            <body name="hip_yaw_l" pos="0.029801 0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
+                <inertial pos="0.00014 -0.00029 0.00728" quat="0.509356 0.490492 0.508928 0.490884" mass="0.73183"
                           diaginertia="0.0018184 0.0016741 0.000549369"/>
-                <joint name="hip_yaw_l" pos="0 0 0" axis="0 0 1"
-                       range="-1.5708 1.5708"/>
+                <joint name="hip_yaw_l" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"/>
 
                 <body name="hip_pitch_l" quat="0.707107 0 0.707107 0">
-                    <inertial pos="0 0 0" mass="0.01436"
-                              diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
-                    <joint name="hip_pitch_l" pos="0 0 0" axis="0 0 1"
-                           range="-0.43633 2.4435"/>
+                    <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
+                    <joint name="hip_pitch_l" pos="0 0 0" axis="0 0 1" range="-0.43633 2.4435"/>
 
                     <body name="hip_roll_l" quat="0.707107 -0.707107 0 0">
-                        <inertial pos="0.12174 0.0018 -0.01344"
-                                  quat="0.458106 0.54719 0.511961 0.47814"
-                                  mass="0.76925"
+                        <inertial pos="0.12174 0.0018 -0.01344" quat="0.458106 0.54719 0.511961 0.47814" mass="0.76925"
                                   diaginertia="0.00303267 0.00284036 0.00042805"/>
-                        <joint name="hip_roll_l" pos="0 0 0" axis="0 0 1"
-                               range="-0.95993 0.95993"/>
+                        <joint name="hip_roll_l" pos="0 0 0" axis="0 0 1" range="-0.95993 0.95993"/>
 
-                        <body name="knee_pitch_l" pos="0.174817 0 -0.0075"
-                              quat="0.707107 0.707107 0 0">
-                            <inertial pos="0.049014 0.039754 -0.00044194"
-                                      quat="0.165544 0.706684 0.0527763 0.685862"
-                                      mass="0.091949"
-                                      diaginertia="0.000341457 0.000335584 4.45378e-05"/>
-                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1"
-                                   range="0 2.4435"/>
+                        <body name="knee_pitch_l" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
+                            <inertial pos="0.049014 0.039754 -0.00044194" quat="0.165544 0.706684 0.0527763 0.685862"
+                                      mass="0.091949" diaginertia="0.000341457 0.000335584 4.45378e-05"/>
+                            <joint name="knee_pitch_l" pos="0 0 0" axis="0 0 -1" range="0 2.4435"/>
 
                             <!-- Contact geometry for left shin -->
                             <body>
-                                <geom class="og_bruce/collision/shin" name="shin_contact_l"/>
+                                <geom class="og_bruce/collision/shin" name="shin_contact_l" />
                             </body>
 
                             <body name="ankle_pitch_l" pos="0.1618 0.0503411 0">
                                 <inertial pos="0.01509 0.0056392 -0.00011925"
-                                          quat="0.500518 0.525947 -0.470146 0.501821"
-                                          mass="0.025"
+                                          quat="0.500518 0.525947 -0.470146 0.501821" mass="0.025"
                                           diaginertia="2.1386e-05 2.05126e-05 1.53437e-06"/>
-                                <joint name="ankle_pitch_l" pos="0 0 0" axis="0 0 -1"
-                                       range="-1.2566 1.0472"/>
+                                <joint name="ankle_pitch_l" pos="0 0 0" axis="0 0 -1" range="-1.2566 1.0472"/>
                                 <site name="ankle_attachment_l" pos="0 -0.03 0"/>
 
                                 <!-- Contact geometry for left foot -->
                                 <body>
-                                    <geom class="og_bruce/collision/foot" name="foot_contact_l"/>
+                                    <geom class="og_bruce/collision/foot" name="foot_contact_l" />
                                 </body>
-
                                 <!-- Sites for left foot contact sensors -->
-                                <site name="footL_contact_site_front" pos="0.023 0.05 0" size="0.007"/>
-                                <site name="footL_contact_site_back" pos="0.023 -0.032 0" size="0.007"/>
+                                <site name="footL_contact_site_front" pos="0.023 0.05 0" size="0.007" rgba="1 0 0 0.5"/>
+                                <site name="footL_contact_site_back" pos="0.023 -0.032 0" size="0.007" rgba="1 0 0 0.5"/>
+
                             </body>
                         </body>
-
-                        <body name="knee_pitch_l0" pos="0.174817 0 -0.0075"
-                              quat="0.707107 0.707107 0 0">
+                        <body name="knee_pitch_l0" pos="0.174817 0 -0.0075" quat="0.707107 0.707107 0 0">
                             <inertial pos="0.0 0.0 0.0" mass="0.0001"
                                       diaginertia="4.04275e-08 3.80418e-08 7.70463e-08"/>
                             <joint name="knee_pitch_l0" pos="0 0 0" axis="0 0 1"/>
 
-                            <body name="ankle_pitch_l1" pos="0 -0.03 0"
-                                  quat="0.9886517 0 0 0.1502256">
+                            <body name="ankle_pitch_l1" pos="0 -0.03  0" quat="0.9886517 0  0 0.1502256">
                                 <joint name="ankle_pitch_l1" pos="0 0 0" axis="0 0 1"/>
                                 <inertial pos="0.0 0.0 0.0" mass="0.0001"
                                           diaginertia="4.04275e-08 3.80418e-08 7.70463e-08"/>
-
-                                <body name="knee_pitch_l1" pos="0.1695 0 0">
+                                <body name="knee_pitch_l1" pos="0.1695 0  0">
                                     <joint name="knee_pitch_l1" axis="0 0 1"/>
                                     <inertial pos="0.0 0.0 0.0" mass="0.0001"
                                               diaginertia="4.04275e-08 3.80418e-08 7.70463e-08"/>
@@ -208,119 +175,91 @@
                         </body>
                     </body>
                 </body>
+
+                <body name="hip_actuatorL_l" quat="0.707107 0 0.707107 0">
+                    <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
+                    <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 1"/>
+                </body>
+
+                <body name="hip_actuatorL_r" quat="0.707107 0 0.707107 0">
+                    <inertial pos="0 0 0" mass="0.001" diaginertia="1e-9 1e-9 1e-9"/>
+                    <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 -1"/>
+                </body>
+
             </body>
 
-            <body name="hip_actuatorL_l" quat="0.707107 0 0.707107 0">
-                <inertial pos="0 0 0" mass="0.001"
-                          diaginertia="1e-09 1e-09 1e-09"/>
-                <joint name="hip_actuatorL_l" pos="0 0 0" axis="0 0 1"/>
-            </body>
-
-            <body name="hip_actuatorL_r" quat="0.707107 0 0.707107 0">
-                <inertial pos="0 0 0" mass="0.001"
-                          diaginertia="1e-09 1e-09 1e-09"/>
-                <joint name="hip_actuatorL_r" pos="0 0 0" axis="0 0 -1"/>
-            </body>
-        </body>
-
-        <!-- Upper Body -->
-        <body name="shoulder_pitch_r" pos="0.029801 -0.13225 0.151062"
-              quat="0.5 0.5 -0.5 0.5">
-            <inertial pos="0 -0.0004 -0.01353"
-                      quat="0.999973 -0.00739362 -1.23246e-06 4.94233e-06"
-                      mass="0.08908"
-                      diaginertia="1.6397e-05 1.54135e-05 8.45928e-06"/>
-            <joint name="shoulder_pitch_r" pos="0 0 0" axis="0 0 -1"
-                   range="-3.1416 3.1416"/>
-
-            <body name="shoulder_roll_r" quat="0.5 0.5 -0.5 0.5">
-                <inertial pos="0.05766 -0.00412 0.00077"
-                          quat="0.540311 0.434098 0.57106 0.439902"
-                          mass="0.03581"
-                          diaginertia="6.66828e-05 6.63384e-05 1.03399e-05"/>
-                <joint name="shoulder_roll_r" pos="0 0 0" axis="0 0 1"
-                       range="-1.4835 1.8326"/>
-
-                <body name="elbow_pitch_r" pos="0.1145 -0.005 0.005"
-                      quat="0.707107 0.707107 0 0">
-                    <inertial pos="0.01939 0 0.00038"
-                              quat="0.50135 0.498646 0.498646 0.50135"
-                              mass="0.09342"
-                              diaginertia="6.6448e-05 6.49187e-05 7.73303e-06"/>
-                    <joint name="elbow_pitch_r" pos="0 0 0" axis="0 0 -1"
-                           range="-2.0595 1.5708"/>
+            <!-- Upper Body -->
+            <body name="shoulder_pitch_r" pos="0.029801 -0.13225 0.151062" quat="0.5 0.5 -0.5 0.5">
+                <inertial pos="0 -0.0004 -0.01353" quat="0.999973 -0.00739362 -1.23246e-06 4.94233e-06" mass="0.08908"
+                          diaginertia="1.6397e-05 1.54135e-05 8.45928e-06"/>
+                <joint name="shoulder_pitch_r" pos="0 0 0" axis="0 0 -1" range="-3.1416 3.1416"/>
+                <body name="shoulder_roll_r" quat="0.5 0.5 -0.5 0.5">
+                    <inertial pos="0.05766 -0.00412 0.00077" quat="0.540311 0.434098 0.57106 0.439902" mass="0.03581"
+                              diaginertia="6.66828e-05 6.63384e-05 1.03399e-05"/>
+                    <joint name="shoulder_roll_r" pos="0 0 0" axis="0 0 1" range="-1.4835 1.8326"/>
+                    <body name="elbow_pitch_r" pos="0.1145 -0.005 0.005" quat="0.707107 0.707107 0 0">
+                        <inertial pos="0.01939 0 0.00038" quat="0.50135 0.498646 0.498646 0.50135" mass="0.09342"
+                                  diaginertia="6.6448e-05 6.49187e-05 7.73303e-06"/>
+                        <joint name="elbow_pitch_r" pos="0 0 0" axis="0 0 -1" range="-2.0595 1.5708"/>
+                    </body>
                 </body>
             </body>
-        </body>
-
-        <body name="shoulder_pitch_l" pos="0.029801 0.13225 0.151062"
-              quat="0.5 -0.5 0.5 0.5">
-            <inertial pos="0 -0.0004 -0.01353"
-                      quat="0.999973 -0.00739362 -1.23246e-06 4.94233e-06"
-                      mass="0.08908"
-                      diaginertia="1.6397e-05 1.54135e-05 8.45928e-06"/>
-            <joint name="shoulder_pitch_l" pos="0 0 0" axis="0 0 -1"
-                   range="-3.1416 3.1416"/>
-
-            <body name="shoulder_roll_l" quat="0.499998 0.5 -0.5 0.500002">
-                <inertial pos="0.05766 0.00411 0.00077"
-                          quat="0.439864 0.571051 0.43411 0.540341"
-                          mass="0.03581"
-                          diaginertia="6.66824e-05 6.63384e-05 1.03402e-05"/>
-                <joint name="shoulder_roll_l" pos="0 0 0" axis="0 0 1"
-                       range="-1.8326 1.4835"/>
-
-                <body name="elbow_pitch_l" pos="0.1145 0.005 0.005"
-                      quat="0.707107 -0.707107 0 0">
-                    <inertial pos="0.01939 0 0.00038"
-                              quat="0.50135 0.498646 0.498646 0.50135"
-                              mass="0.09342"
-                              diaginertia="6.6448e-05 6.49187e-05 7.73303e-06"/>
-                    <joint name="elbow_pitch_l" pos="0 0 0" axis="0 0 -1"
-                           range="-1.5708 2.0595"/>
+            <body name="shoulder_pitch_l" pos="0.029801 0.13225 0.151062" quat="0.5 -0.5 0.5 0.5">
+                <inertial pos="0 -0.0004 -0.01353" quat="0.999973 -0.00739362 -1.23246e-06 4.94233e-06" mass="0.08908"
+                          diaginertia="1.6397e-05 1.54135e-05 8.45928e-06"/>
+                <joint name="shoulder_pitch_l" pos="0 0 0" axis="0 0 -1" range="-3.1416 3.1416"/>
+                <body name="shoulder_roll_l" quat="0.499998 0.5 -0.5 0.500002">
+                    <inertial pos="0.05766 0.00411 0.00077" quat="0.439864 0.571051 0.43411 0.540341" mass="0.03581"
+                              diaginertia="6.66824e-05 6.63384e-05 1.03402e-05"/>
+                    <joint name="shoulder_roll_l" pos="0 0 0" axis="0 0 1" range="-1.8326 1.4835"/>
+                    <body name="elbow_pitch_l" pos="0.1145 0.005 0.005" quat="0.707107 -0.707107 0 0">
+                        <inertial pos="0.01939 0 0.00038" quat="0.50135 0.498646 0.498646 0.50135" mass="0.09342"
+                                  diaginertia="6.6448e-05 6.49187e-05 7.73303e-06"/>
+                        <joint name="elbow_pitch_l" pos="0 0 0" axis="0 0 -1" range="-1.5708 2.0595"/>
+                    </body>
                 </body>
             </body>
         </body>
     </worldbody>
 
-    <!-- Actuators for Lower Body Joints -->
+    <!-- Actuators for lower body joints using the leg actuator parameters -->
     <actuator>
-        <!-- Right Leg Actuators -->
+        <!-- Right leg actuators with control ranges -->
         <position class="og_bruce/affine_bear" joint="hip_yaw_r" name="hip_yaw_r"/>
-        <!-- Uncomment if needed -->
-        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_r" name="hip_pitch_r"/> -->
-        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_r" name="hip_roll_r"/> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_r" name="hip_pitch_r" /> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_r" name="hip_roll_r" /> -->
         <position class="og_bruce/affine_bear" joint="hip_actuatorR_r" name="hip_actuatorR_r"/>
         <position class="og_bruce/affine_bear" joint="hip_actuatorR_l" name="hip_actuatorR_l"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_r" name="knee_pitch_r"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_r0" name="ankle_pitch_r"/>
 
-        <!-- Left Leg Actuators -->
+        <!-- Left leg actuators with control ranges -->
         <position class="og_bruce/affine_bear" joint="hip_yaw_l" name="hip_yaw_l"/>
-        <!-- Uncomment if needed -->
-        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_l" name="hip_pitch_l"/> -->
-        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_l" name="hip_roll_l"/> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_l" name="hip_pitch_l" /> -->
+        <!-- <position class="og_bruce/affine_bear" joint="hip_roll_l" name="hip_roll_l" /> -->
         <position class="og_bruce/affine_bear" joint="hip_actuatorL_r" name="hip_actuatorL_r"/>
         <position class="og_bruce/affine_bear" joint="hip_actuatorL_l" name="hip_actuatorL_l"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_l" name="knee_pitch_l"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_l0" name="ankle_pitch_l"/>
     </actuator>
 
-    <!-- Actuators for Upper Body Joints -->
+
+    <!-- Actuators for upper body joints using the arm actuator parameters -->
     <actuator>
-        <!-- Right Arm Actuators -->
+        <!-- Right arm actuators -->
         <position class="og_bruce/affine_dynamixel" joint="shoulder_pitch_r" name="shoulder_pitch_r"/>
         <position class="og_bruce/affine_dynamixel" joint="shoulder_roll_r" name="shoulder_roll_r"/>
         <position class="og_bruce/affine_dynamixel" joint="elbow_pitch_r" name="elbow_pitch_r"/>
 
-        <!-- Left Arm Actuators -->
+        <!-- Left arm actuators -->
         <position class="og_bruce/affine_dynamixel" joint="shoulder_pitch_l" name="shoulder_pitch_l"/>
         <position class="og_bruce/affine_dynamixel" joint="shoulder_roll_l" name="shoulder_roll_l"/>
         <position class="og_bruce/affine_dynamixel" joint="elbow_pitch_l" name="elbow_pitch_l"/>
     </actuator>
 
+
     <tendon>
-        <!-- Parallel Mechanism for Right Leg -->
+        <!-- Parallel mechanism for right leg -->
         <fixed name="roll_r">
             <joint joint="hip_roll_r" coef="1"/>
         </fixed>
@@ -332,11 +271,11 @@
             <joint joint="hip_actuatorR_l" coef="0.5"/>
         </fixed>
         <fixed name="diff_r">
-            <joint joint="hip_actuatorR_r" coef="0.5"/>
-            <joint joint="hip_actuatorR_l" coef="-0.5"/>
+            <joint joint="hip_actuatorR_r" coef=".5"/>
+            <joint joint="hip_actuatorR_l" coef="-.5"/>
         </fixed>
 
-        <!-- Parallel Mechanism for Left Leg -->
+        <!-- Parallel mechanism for left leg -->
         <fixed name="roll_l">
             <joint joint="hip_roll_l" coef="1"/>
         </fixed>
@@ -348,43 +287,48 @@
             <joint joint="hip_actuatorL_l" coef="0.5"/>
         </fixed>
         <fixed name="diff_l">
-            <joint joint="hip_actuatorL_r" coef="0.5"/>
-            <joint joint="hip_actuatorL_l" coef="-0.5"/>
+            <joint joint="hip_actuatorL_r" coef=".5"/>
+            <joint joint="hip_actuatorL_l" coef="-.5"/>
         </fixed>
     </tendon>
 
     <equality>
-        <!-- Right Differential Mechanism -->
+        <!-- For right differential mechanism -->
         <tendon tendon1="roll_r" tendon2="sum_r" polycoef="0 -1 0 0 0"/>
         <tendon tendon1="pitch_r" tendon2="diff_r" polycoef="0 -1 0 0 0"/>
-
-        <!-- Left Differential Mechanism -->
+        <!-- For left differential mechanism -->
         <tendon tendon1="roll_l" tendon2="sum_l" polycoef="0 -1 0 0 0"/>
         <tendon tendon1="pitch_l" tendon2="diff_l" polycoef="0 -1 0 0 0"/>
-
-        <!-- 5-Bar Linkage Mechanisms -->
-        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_r1"
-                 body2="ankle_pitch_r" name="equality_knee_r"/>
-        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_l1"
-                 body2="ankle_pitch_l" name="equality_knee_l"/>
+        <!-- For 5-bar linkage mechanisms -->
+        <!-- Connecting body will assume the link is closed when loaded. Constraints can break with infeasible joints. -->
+        <!-- Connecting sites will enforce two points to be connected, but the simulation becomes unstable when infeasible -->
+        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_r1" body2="ankle_pitch_r" name="equality_knee_r"/>
+        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_l1" body2="ankle_pitch_l" name="equality_knee_l"/>
     </equality>
 
     <contact>
-        <!-- Collision Pairs -->
+        <!-- Collision between right shin and left shin -->
         <pair geom1="shin_contact_r" geom2="shin_contact_l"/>
+        <!-- Collision between right shin and left foot -->
         <pair geom1="shin_contact_r" geom2="foot_contact_l"/>
+        <!-- Collision between right foot and left shin -->
         <pair geom1="foot_contact_r" geom2="shin_contact_l"/>
+        <!-- Collision between right foot and left foot -->
         <pair geom1="foot_contact_r" geom2="foot_contact_l"/>
     </contact>
 
+
     <keyframe>
         <key name="home"
-             qpos='  0 0 0.45
+            qpos='  0 0 0.45
                     1 0 0 0
                     0 0 0 0 0 0 0 0 0 0 
                     0 0 0 0 0 0 0 0 0 0 
                     0 1.4 0 0 -1.4 0'
-             ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
-                   0 1.4 0 0 -1.4 0'/>
+            
+            ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
+                  0 1.4 0 0 -1.4 0'/>
     </keyframe>
-</mujoco>
+ </mujoco>
+
+ 
