@@ -1,8 +1,8 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="5" iterations="3" ls_iterations="5" integrator="implicitfast" timestep="0.005">
-            <flag gravity="enable"/>
+    <option impratio="5" iterations="3" ls_iterations="5" tolerance="1e-6" ls_tolerance="0.02" integrator="implicitfast" timestep="0.005">
+            <flag gravity="enable" eulerdamp="disable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
 
@@ -62,7 +62,7 @@
         <!-- base link z at 0.5m to start in scene -->
         <body name="base_link" pos="0.0 0.0 0.0" quat="1.0 0.0 0.0 0.0" childclass="og_bruce">
             <!-- So the model isn't rigid in the air -->
-            <freejoint /> 
+            <!-- <freejoint />  -->
             <!-- Camera wrt to COM to track the base link -->
             <camera name="track_com" pos="1.253 -1.502 0.378" xyaxes="0.768 0.641 0.000 -0.101 0.122 0.987" mode="trackcom"/>
 
@@ -357,7 +357,7 @@
     </contact>
 
 
-    <keyframe>
+    <!-- <keyframe>
         <key name="home"
             qpos='  0 0 0.45
                     1 0 0 0
@@ -367,7 +367,7 @@
             
             ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
                   0 1.4 0 0 -1.4 0'/>
-    </keyframe>
+    </keyframe> -->
  </mujoco>
 
  
