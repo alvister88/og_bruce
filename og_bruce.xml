@@ -9,12 +9,12 @@
     <default>
         <default class="og_bruce">
             <geom contype="0" rgba="0.79216 0.81961 0.93333 1.0" conaffinity="0" type="mesh" group="2"/>
-            <joint damping="1.0" armature="0.011"/>
+            <joint damping="1.0" armature="0.013"/>
             <position ctrlrange="-3.14 3.14" kp="1000" kv="5" />
 
             <default class="og_bruce/collision">
                 <!-- Group right now is arbitrary -->
-                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" solimp="0.015 1 0.031" friction="1.5 0.02 0.01"/>
+                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" friction="1.5 0.02 0.01"/>
                 <!-- Foot collision geometry -->
                 <default class="og_bruce/collision/foot" >
                     <geom contype="1" conaffinity="1" type="box" size="0.0125 0.05 0.007" pos="0.011 0.008 0"/>
