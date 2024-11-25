@@ -77,7 +77,7 @@
             <body name="hip_yaw_r" pos="0.029801 -0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
                 <inertial pos="0.00014312 -0.00028909 0.0072751" quat="0.509356 0.490492 0.508928 0.490884"
                           mass="0.73183" diaginertia="0.0018184 0.0016741 0.000549369"/>
-                <joint name="hip_yaw_r" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"/>
+                <joint name="hip_yaw_r" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708"/>
                 <geom type="mesh" mesh="hip_yaw_r"/>
                 <body name="hip_pitch_r" quat="0.707107 0 0.707107 0">
                     <inertial pos="0 0 0" mass="0.01436" diaginertia="9.8342e-07 9.4912e-07 5.4852e-07"/>
@@ -148,7 +148,7 @@
             <body name="hip_yaw_l" pos="0.029801 0.0758555 -0.0384375" quat="0.707107 0 0 -0.707107">
                 <inertial pos="0.00014 -0.00029 0.00728" quat="0.509356 0.490492 0.508928 0.490884" mass="0.73183"
                           diaginertia="0.0018184 0.0016741 0.000549369"/>
-                <joint name="hip_yaw_l" pos="0 0 0" axis="0 0 1" range="-1.5708 1.5708"/>
+                <joint name="hip_yaw_l" pos="0 0 0" axis="0 0 -1" range="-1.5708 1.5708"/>
                 <geom type="mesh" mesh="hip_yaw_l"/>
 
                 <body name="hip_pitch_l" quat="0.707107 0 0.707107 0">
@@ -262,7 +262,7 @@
     <!-- Actuators for lower body joints using the leg actuator parameters -->
     <actuator>
         <!-- Right leg actuators with control ranges -->
-        <position class="og_bruce/affine_bear" joint="hip_yaw_r" name="hip_yaw_r"/>
+        <position class="og_bruce/affine_bear" joint="hip_yaw_r" name="hip_yaw_r" />
         <!-- <position class="og_bruce/affine_bear" joint="hip_pitch_r" name="hip_pitch_r" /> -->
         <!-- <position class="og_bruce/affine_bear" joint="hip_roll_r" name="hip_roll_r" /> -->
         <position class="og_bruce/affine_bear" joint="hip_actuatorR_r" name="hip_actuatorR_r"/>
