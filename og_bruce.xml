@@ -352,9 +352,15 @@
         <pair geom1="foot_contact_r" geom2="shin_contact_l"/>
         <!-- Collision between right foot and left foot -->
         <pair geom1="foot_contact_r" geom2="foot_contact_l"/>
+        
+        <!-- Floor collision with the flat floor -->
+        <!-- <pair geom1="foot_contact_r" geom2="floor"/> -->
+        <!-- <pair geom1="foot_contact_l" geom2="floor"/> -->
 
-        <pair geom1="foot_contact_r" geom2="floor"/>
-        <pair geom1="foot_contact_l" geom2="floor"/>
+        <!-- Floot collision with height field -->
+        <pair geom1="foot_contact_r" geom2="hfield"/>
+        <pair geom1="foot_contact_l" geom2="hfield"/>
+    
     </contact>
 
 
