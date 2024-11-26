@@ -352,9 +352,6 @@
         <pair geom1="foot_contact_r" geom2="shin_contact_l"/>
         <!-- Collision between right foot and left foot -->
         <pair geom1="foot_contact_r" geom2="foot_contact_l"/>
-
-        <pair geom1="foot_contact_r" geom2="floor"/>
-        <pair geom1="foot_contact_l" geom2="floor"/>
     </contact>
 
 
