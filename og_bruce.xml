@@ -75,9 +75,10 @@
             
             <!-- Extra mass box to randomize the COM ####################################################-->
             <body name="random_mass" pos="0.1 0 0" quat="1 0 0 0">
-                <geom type="box" size="0.05 0.05 0.05" rgba="0.8 0.2 0.2 0.1"/>
-                <inertial pos="0 0 0" mass="1.0" />
+                <!-- Instead of separate <inertial> (causes bug for only mjx), just give the geom its mass: -->
+                <geom type="box" size="0.05 0.05 0.05" mass="1.0" rgba="0.8 0.2 0.2 0.1"/>
             </body>
+
             <!-- Extra mass box to randomize the COM ####################################################-->
 
             <!-- Right Leg ############################################################################################### -->
