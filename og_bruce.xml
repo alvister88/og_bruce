@@ -10,11 +10,11 @@
         <default class="og_bruce">
             <geom contype="0" rgba="0.79216 0.81961 0.93333 1.0" conaffinity="0" type="mesh" group="2"/>
             <joint damping="1.0" armature="0.013"/>
-            <position ctrlrange="-3.14 3.14" kp="200" kv="5" />
+            <position ctrlrange="-3.14 3.14" kp="150" kv="5" />
 
             <default class="og_bruce/collision">
                 <!-- Group right now is arbitrary -->
-                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" friction="1.5 0.02 0.01"/>
+                <geom group="1" rgba="0.79216 0.81961 0.93333 0.4" friction="0.8 0.02 0.01"/>
                 <!-- Foot collision geometry -->
                 <default class="og_bruce/collision/foot" >
                     <!-- Box geometry version -->
@@ -71,12 +71,13 @@
             <camera name="track_com" pos="1.253 -1.502 0.378" xyaxes="0.768 0.641 0.000 -0.101 0.122 0.987" mode="trackcom"/>
 
             <geom type="mesh" mesh="base_link"/>
-            <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/>
-            
+            <inertial pos="0.02325 -0.00013 0.07844" mass="1.02819" diaginertia="0.010858132 0.00685942 0.005914725"/>
+            <!-- <inertial pos="0.02325 -0.00013 0.07844" mass="1.52819" diaginertia="0.010858132 0.00685942 0.005914725"/> -->
+
             <!-- Extra mass box to randomize the COM ####################################################-->
-            <body name="random_mass" pos="0.1 0 0" quat="1 0 0 0">
+            <body name="random_mass" pos="0.1 0 -0.1" quat="1 0 0 0">
                 <!-- Instead of separate <inertial> (causes bug for only mjx), just give the geom its mass: -->
-                <geom type="box" size="0.05 0.05 0.05" mass="1.0" rgba="0.8 0.2 0.2 0.1"/>
+                <geom type="box" size="0.05 0.05 0.05" mass="0.5" rgba="0.8 0.2 0.2 0.1"/>
             </body>
 
             <!-- Extra mass box to randomize the COM ####################################################-->
@@ -276,7 +277,7 @@
         <position class="og_bruce/affine_bear" joint="hip_actuatorR_r" name="hip_actuatorR_r"/>
         <position class="og_bruce/affine_bear" joint="hip_actuatorR_l" name="hip_actuatorR_l"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_r" name="knee_pitch_r"/>
-        <position class="og_bruce/affine_bear" joint="knee_pitch_r0" name="ankle_pitch_r"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_r0" name="ankle_pitch_r" />
 
         <!-- Left leg actuators with control ranges -->
         <position class="og_bruce/affine_bear" joint="hip_yaw_l" name="hip_yaw_l" />
@@ -285,7 +286,7 @@
         <position class="og_bruce/affine_bear" joint="hip_actuatorL_r" name="hip_actuatorL_r"/>
         <position class="og_bruce/affine_bear" joint="hip_actuatorL_l" name="hip_actuatorL_l"/>
         <position class="og_bruce/affine_bear" joint="knee_pitch_l" name="knee_pitch_l"/>
-        <position class="og_bruce/affine_bear" joint="knee_pitch_l0" name="ankle_pitch_l"/>
+        <position class="og_bruce/affine_bear" joint="knee_pitch_l0" name="ankle_pitch_l" />
     </actuator>
 
 
@@ -365,14 +366,23 @@
 
     <keyframe>
         <key name="home"
-            qpos='  0 0 0.45
+            qpos='  0 0 0.48
                     1 0 0 0
                     0 0 0 0 0 0 0 0 0 0 
                     0 0 0 0 0 0 0 0 0 0 
                     0 1.4 0 0 -1.4 0'
             
-            ctrl='0 0 0 0.45 0 0 0 0 0.45 0 
+            ctrl='0 0 0 0.45 -0.05 0 0 0 0.45 -0.05 
                   0 1.4 0 0 -1.4 0'/>
+        
+        <key name="home2"
+            qpos="0.0 0.0 0.45
+                    1 0 0 0
+                    0.0 -0.0025081 0 0.448318 -0.365908 -0.0535789 -0.395035 0 -0.00150779 0.00157842
+                    0.0 -0.0025056 0 0.448322 -0.365912 -0.0535739 -0.395043 0 -0.00157435 0.00150835
+                    0 1.4 0
+                    0 -1.4 0"
+            ctrl="0 0 0 0.45 -0.05 0 0 0 0.45 -0.05 0 1.4 0 0 -1.4 0"/>
     </keyframe>
  </mujoco>
 
