@@ -1,7 +1,7 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="5" iterations="3" ls_iterations="5" tolerance="1e-6" ls_tolerance="0.02" integrator="implicitfast" timestep="0.005">
+    <option impratio="10" iterations="3" ls_iterations="5" tolerance="1e-6" ls_tolerance="0.02" integrator="implicitfast" timestep="0.005">
             <flag gravity="enable" eulerdamp="disable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
@@ -85,10 +85,10 @@
             <!-- Extra mass box to randomize the COM ####################################################-->
 
             <!-- Extra mass to bias COM ####################################################-->
-            <body name="bias_mass" pos="-0.07 0 -0.1" quat="1 0 0 0">
+            <!-- <body name="bias_mass" pos="-0.07 0 -0.1" quat="1 0 0 0"> -->
                 <!-- Instead of separate <inertial> (causes bug for only mjx), just give the geom its mass: -->
-                <geom type="sphere" size="0.05" mass="0.7" rgba="0.8 0.2 0.2 0.1"/>
-            </body>
+                <!-- <geom type="sphere" size="0.05" mass="0.7" rgba="0.8 0.2 0.2 0.1"/> -->
+            <!-- </body> -->
             <!-- Extra mass to bias COM ####################################################-->
 
 
@@ -378,11 +378,11 @@
         <key name="home"
             qpos="0.0 0.0 0.48
                     1 0 0 0
-                    0 0 0 0.4 -0.4 -0.02 -0.4 0 0 0
-                    0 0 0 0.4 -0.4 -0.02 -0.4 0 0 0
+                    0 0 0 0.4 -0.4 -0.03 -0.4 0 0 0
+                    0 0 0 0.4 -0.4 -0.03 -0.4 0 0 0
                     0 1.4 0
                     0 -1.4 0"
-            ctrl="0 0 0 0.4 -0.02 0 0 0 0.4 -0.02 0 1.4 0 0 -1.4 0"/>
+            ctrl="0 0 0 0.4 -0.03 0 0 0 0.4 -0.03 0 1.4 0 0 -1.4 0"/>
 
         <!-- <key name="home"
             qpos="0.0 0.0 0.48
