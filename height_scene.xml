@@ -25,7 +25,7 @@
     <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
       markrgb="0.8 0.8 0.8" width="300" height="300"/>
     <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
-    <hfield name="hfield" file="hfields/hfield_512.png" size="20 20 .03 0.1"/> 
+    <hfield name="hfield" file="hfields/hfield_half_256.png" size="20 20 .02 0.1"/> 
   </asset>
 
   <worldbody>
