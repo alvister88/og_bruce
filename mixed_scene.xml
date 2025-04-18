@@ -27,6 +27,7 @@
             width="300" height="300"/>
     <material name="groundplane" texture="groundplane"
               texuniform="true" texrepeat="5 5" reflectance="0.05"/>
+    <hfield name="hfield" file="hfields/hfield_half_256.png" size="20 20 .02 0.1"/> 
   </asset>
 
   <worldbody>
