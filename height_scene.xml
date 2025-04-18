@@ -19,7 +19,6 @@
     <global azimuth="120" elevation="-20"/>
   </visual>
 
-
   <asset>
     <texture type="skybox" builtin="gradient" rgb1="0.1 0.1 0.1" rgb2="0 0 0" width="512" height="3072"/>
     <texture type="2d" name="groundplane" builtin="checker"
@@ -28,6 +27,7 @@
             width="300" height="300"/>
     <material name="groundplane" texture="groundplane"
               texuniform="true" texrepeat="5 5" reflectance="0.05"/>
+     <hfield name="hfield" file="hfields/hfield_256.png" size="20 20 .02 0.1"/> 
   </asset>
 
   <worldbody>
