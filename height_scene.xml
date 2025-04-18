@@ -15,7 +15,7 @@
 
   <visual>
     <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
-    <rgba haze="0.15 0.25 0.35 1"/>
+    <rgba haze="0.2 0.2 0.2 1"/>
     <global azimuth="120" elevation="-20"/>
   </visual>
 
@@ -29,7 +29,7 @@
     <material name="groundplane" texture="groundplane"
               texuniform="true" texrepeat="5 5" reflectance="0.05"/>
   </asset>
-  
+
   <worldbody>
     <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
     <!-- Height Field Geom -->
