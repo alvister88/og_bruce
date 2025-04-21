@@ -20,7 +20,9 @@
                     <!-- Box geometry version -->
                     <!-- <geom contype="1" conaffinity="1" type="box" size="0.01 0.05 0.007" pos="0.011 0.008 0" rgba="0 0 0 1"/>-->
                     <!-- capsule geometry version -->
-                    <geom contype="1" conaffinity="1" type="capsule" size="0.01 0.033" pos="0.015 0.015 0" quat="0.707107 0.707107 0 0" rgba="0 0 0 0.2"/>
+                    <geom contype="1" conaffinity="1" type="capsule" size="0.01 0.037" pos="0.015 0.013 0" quat="0.707107 0.707107 0 0" rgba="0 0 0 0.2"/>
+<!--                    <geom contype="1" conaffinity="1" type="capsule" size="0.01 0.04" pos="0.015 0.008 0" quat="0.707107 0.707107 0 0" rgba="0 0 0 0.2"/>-->
+
                 </default>
 
                 <!-- Shin collision geometry -->
@@ -358,8 +360,10 @@
         <!-- For 5-bar linkage mechanisms -->
         <!-- Connecting body will assume the link is closed when loaded. Constraints can break with infeasible joints. -->
         <!-- Connecting sites will enforce two points to be connected, but the simulation becomes unstable when infeasible -->
-        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_r1" body2="ankle_pitch_r" name="equality_knee_r"/>
-        <connect anchor="0 0 0" solref="0.005 1" body1="knee_pitch_l1" body2="ankle_pitch_l" name="equality_knee_l"/>
+        <connect anchor="0 0 0" solref="0.005 1.05" solimp="0.2 0.95 0.002 0.9 6" body1="knee_pitch_r1" body2="ankle_pitch_r" name="equality_knee_r"/>
+        <connect anchor="0 0 0" solref="0.005 1.05" solimp="0.2 0.95 0.002 0.9 6" body1="knee_pitch_l1" body2="ankle_pitch_l" name="equality_knee_l"/>
+<!--        <connect anchor="0 0 0" solref="0.005 1"  body1="knee_pitch_r1" body2="ankle_pitch_r" name="equality_knee_r"/>-->
+<!--        <connect anchor="0 0 0" solref="0.005 1"  body1="knee_pitch_l1" body2="ankle_pitch_l" name="equality_knee_l"/>-->
     </equality>
 
     <contact>
@@ -375,7 +379,19 @@
 
 <!--                    0    0   0 0.4  -0.4 -0.03 -0.4 0 0 0-->
 <!--                    0 0 0 0.4 -0.4 -0.03 -0.4 0 0 0-->
+
+
     <keyframe>
+                <key name="home"
+            qpos="0.0 0.0 0.43
+                    1 0 0 0
+                    0
+                    0 0.5 0 1.2 -0.75  -0.51  -0.722 0 0.5 -0.5
+                    0 0.5 0 1.2 -0.75  -0.51  -0.722 0 0.5 -0.5
+                    0 1.4 0
+                    0 -1.4 0"
+            ctrl="0  -0.5 0.5  1.2 -0.49 0  -0.5 0.5  1.2 -0.49 0 1.4 0 0 -1.4 0"/>
+
         <key name="home_st"
             qpos="0.0 0.0 0.48
                     1 0 0 0
@@ -386,15 +402,7 @@
                     0 -1.4 0"
             ctrl="0 0 0 0.4 -0.03 0 0 0 0.4 -0.03 0 1.4 0 0 -1.4 0"/>
 
-        <key name="home"
-            qpos="0.0 0.0 0.43
-                    1 0 0 0
-                    0
-                    0 0.5 0 1.2 -0.75  -0.51  -0.722 0 0.5 -0.5
-                    0 0.5 0 1.2 -0.75  -0.51  -0.722 0 0.5 -0.5
-                    0 1.4 0
-                    0 -1.4 0"
-            ctrl="0  -0.5 0.5  1.2 -0.49 0  -0.5 0.5  1.2 -0.49 0 1.4 0 0 -1.4 0"/>
+
 
         <!-- <key name="home"
             qpos="0.0 0.0 0.48
