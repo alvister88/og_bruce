@@ -33,7 +33,7 @@
             </default>
 
             <default class="og_bruce/affine_bear">
-                <joint armature="1.82000000e-02" damping="1.10816751e-03" stiffness="0,0" frictionloss="6.59247142e-02"/>
+                <joint armature="1.82000000e-02" damping="1.10816751e-03" stiffness="0.0" frictionloss="6.59247142e-02"/>
                 <position kp="65" kv="0.9" ctrlrange="-3.141592 3.141592" forcerange="-8.0 8.0"/>
 
             </default>
