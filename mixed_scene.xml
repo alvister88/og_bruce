@@ -5,8 +5,8 @@
   <!-- Define explicit contacts with the scene -->
   <contact>
     <!-- Floot collision with height field -->
-    <pair geom1="foot_contact_r" geom2="hfield"/>
-    <pair geom1="foot_contact_l" geom2="hfield"/>
+    <pair geom1="foot_contact_r" geom2="floor" solref="0.02 1" solimp="0.8 0.95 0.002 0.9 2"/>
+    <pair geom1="foot_contact_l" geom2="floor" solref="0.02 1" solimp="0.8 0.95 0.002 0.9 2"/>
 
   </contact>
 
