@@ -18,7 +18,8 @@
                 <!-- Foot collision geometry -->
                 <default class="og_bruce/collision/foot" >
                     <!-- Box geometry version -->
-                    <geom contype="1" conaffinity="1" type="box" size="0.01 0.05 0.017" pos="0.014 0.008 0.0" rgba="0.5 0.0 0.8 0.2"/>
+                    <geom contype="1" conaffinity="1" type="box" size="0.01 0.053 0.017" pos="0.014 0.008 0.0" rgba="0.5 0.0 0.8 0.2"/> 
+                    <!-- for size: (thickness, length, width) -->
                     <!-- capsule geometry version -->
                     <!-- <geom contype="1" conaffinity="1" type="capsule" size="0.01 0.037" pos="0.015 0.013 0" quat="0.707107 0.707107 0 0" rgba="0 0 0 0.2"/> -->
 <!--                    <geom contype="1" conaffinity="1" type="capsule" size="0.01 0.04" pos="0.015 0.008 0" quat="0.707107 0.707107 0 0" rgba="0 0 0 0.2"/>-->
@@ -383,7 +384,7 @@
 
     <keyframe>
         <key name="home"
-            qpos="0.0 0.0 0.52
+            qpos="0.0 0.0 0.45
                     1 0 0 0
                     0
                     0 0.5 0 1.2 -0.75  -0.51  -0.722 0 0.5 -0.5
@@ -393,7 +394,7 @@
             ctrl="0  -0.5 0.5  1.2 -0.49 0  -0.5 0.5  1.2 -0.49 0 1.4 0 0 -1.4 0"/>
 
         <key name="home_st"
-            qpos="0.0 0.0 0.48
+            qpos="0.0 0.0 0.47
                     1 0 0 0
                     0
                     0 0 0 0.4 -0.4 -0.03 -0.4 0 0 0
