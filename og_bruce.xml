@@ -1,7 +1,7 @@
 <mujoco model="BRUCE_OG_SIMPLE_urdf">
     <compiler angle="radian" autolimits="true"/>
 
-    <option impratio="10" iterations="3" ls_iterations="5" tolerance="1e-6" ls_tolerance="0.02" integrator="implicitfast" timestep="0.005">
+    <option impratio="5" iterations="3" ls_iterations="5" tolerance="1e-6" ls_tolerance="0.02" integrator="implicitfast" timestep="0.005">
             <flag gravity="enable" eulerdamp="disable"/>
     </option>
     <!-- <flag gravity="disable"/> -->
